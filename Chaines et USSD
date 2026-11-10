@@ -1,0 +1,25 @@
+// Validation sans exception
+public static boolean estCodeUSSDValide(String code) {
+    if (code == null || code.length() < 3) return false;
+    if (code.charAt(0) != '*') return false;
+    if (code.charAt(code.length() - 1) != '#') return false;
+    return true;
+}
+
+// Découper avec substring et indexOf
+public static String getChoix(String saisie) {
+    // Ex: "*144*2#" -> on veut "2"
+    int debut = saisie.indexOf("*", 1); // 2ème *
+    int fin = saisie.indexOf("#");
+    if (debut == -1 || fin == -1) return "";
+    return saisie.substring(debut + 1, fin);
+}
+
+// Construire un menu avec StringBuilder
+public static String menu() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("1. Solde\n");
+    sb.append("2. Transfert\n");
+    sb.append("3. Quitter");
+    return sb.toString();
+}
